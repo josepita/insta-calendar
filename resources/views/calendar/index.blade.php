@@ -21,6 +21,9 @@
             <button id="today" class="btn btn-outline-primary">Hoy</button>
             <button id="next-month" class="btn btn-outline-secondary">Mes Siguiente &gt;</button>
         </div>
+        <div class="mt-3">
+            <a href="{{ route('admin.cuentas.index') }}" class="btn btn-link">Ir a Administración</a>
+        </div>
     </div>
 @endsection
 

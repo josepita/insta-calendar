@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.cuentas.index')" :active="request()->routeIs('admin.cuentas.*')">
+                        Gestión de Cuentas
+                    </x-nav-link>
+                    <x-nav-link :href="route('calendar.index')" class="text-green-600 hover:text-green-700">
+                        📅 Ver Calendario Público
+                    </x-nav-link>
                 </div>
             </div>
 

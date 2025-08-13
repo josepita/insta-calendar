@@ -5,20 +5,6 @@
 
     RewriteEngine On
 
-    # Desactivar buffering para importaciones (streaming en tiempo real)
-    <IfModule mod_deflate.c>
-        SetEnvIfNoCase Request_URI "admin/cuentas/.*import" no-gzip
-    </IfModule>
-    
-    <IfModule mod_headers.c>
-        <LocationMatch "admin/cuentas/.*import">
-            Header always set X-Accel-Buffering "no"
-            Header always set Cache-Control "no-cache, no-store, must-revalidate"
-            Header always set Pragma "no-cache"
-            Header always set Expires "0"
-        </LocationMatch>
-    </IfModule>
-
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

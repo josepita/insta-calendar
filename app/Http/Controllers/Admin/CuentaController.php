@@ -122,7 +122,7 @@ class CuentaController extends Controller
         $response->headers->set('Content-Type', 'text/event-stream');
         $response->headers->set('Cache-Control', 'no-cache');
         $response->headers->set('X-Accel-Buffering', 'no');
-        return $response;
+        return $response; 
     }
     
     private function processPost(array $postData, Cuenta $cuenta, array &$failedImages, callable $sendMessage = null)

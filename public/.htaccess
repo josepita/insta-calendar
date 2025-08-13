@@ -7,16 +7,18 @@
 
     # Desactivar buffering para importaciones (streaming en tiempo real)
     <IfModule mod_deflate.c>
-        SetEnvIfNoCase Request_URI "admin/cuentas/.*import" no-gzip
+        SetEnvIfNoCase Request_URI "admin/cuentas/.*import" no-gzip dont-vary
     </IfModule>
     
     <IfModule mod_headers.c>
-        <LocationMatch "admin/cuentas/.*import">
-            Header always set X-Accel-Buffering "no"
-            Header always set Cache-Control "no-cache, no-store, must-revalidate"
-            Header always set Pragma "no-cache"
-            Header always set Expires "0"
-        </LocationMatch>
+        # Solo para rutas de importación
+        RewriteCond %{REQUEST_URI} admin/cuentas/.*import
+        RewriteRule .* - [E=STREAMING:1]
+        
+        Header always set X-Accel-Buffering "no" env=STREAMING
+        Header always set Cache-Control "no-cache, no-store, must-revalidate" env=STREAMING
+        Header always set Pragma "no-cache" env=STREAMING
+        Header always set Expires "0" env=STREAMING
     </IfModule>
 
     # Handle Authorization Header
